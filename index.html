@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3d6bf0">
+<title>FlowBank</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar"></div>
+  <div class="screen">
+
+    <!-- Balance -->
+    <div class="balance-label-row" id="toggleBalance" title="Show / hide balance">
+      TOTAL BALANCE
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" stroke="#8a8fa3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="3" stroke="#8a8fa3" stroke-width="1.8"/>
+      </svg>
+    </div>
+    <div class="balance-amount" id="balanceAmount">$4,285.50</div>
+    <div class="balance-sub">Available to spend</div>
+
+    <!-- Action buttons -->
+    <div class="actions-row">
+      <button class="btn btn-primary" id="addMoneyBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Add Money
+      </button>
+      <button class="btn btn-secondary" id="sendBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7Z" stroke="#3d6bf0" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Send
+      </button>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-brand">
+          <span class="logo-badge">F</span>
+          FlowBank
+        </div>
+        <div class="card-debit-label">DEBIT</div>
+      </div>
+      <div class="chip"></div>
+      <div class="card-bottom">
+        <div>
+          <div class="card-number">•••• 4821</div>
+          <div class="card-name">Alex Morgan</div>
+        </div>
+        <div class="mc-logo">
+          <div class="c1"></div>
+          <div class="c2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="quick-actions">
+      <button class="quick-action" data-action="Pay">
+        <div class="circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 11 21 3l-8 18-2-8-8-2Z" stroke="#3d6bf0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>Pay</span>
+      </button>
+      <button class="quick-action" data-action="Request">
+        <div class="circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#3d6bf0" stroke-width="1.8"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="#3d6bf0" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span>Request</span>
+      </button>
+      <button class="quick-action" data-action="Deposit">
+        <div class="circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="#3d6bf0" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 9h5M8 13h8" stroke="#3d6bf0" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span>Deposit</span>
+      </button>
+      <button class="quick-action" data-action="Transfer">
+        <div class="circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 2 21 6l-4 4M3 12v-2a4 4 0 0 1 4-4h14M7 22 3 18l4-4M21 12v2a4 4 0 0 1-4 4H3" stroke="#3d6bf0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>Transfer</span>
+      </button>
+    </div>
+
+    <!-- Recent activity -->
+    <div class="activity-header">
+      <h3>Recent Activity</h3>
+      <button class="see-all" id="seeAllBtn">See all</button>
+    </div>
+
+    <div class="tx-list" id="txList">
+      <!-- transaction rows are rendered here by script.js -->
+    </div>
+
+    <div style="flex:1;"></div>
+
+    <!-- Floating balance pill -->
+    <div class="balance-pill" id="balancePill">
+      <button class="pill-segment pill-balance active" id="pillBalance">$4.1K</button>
+      <button class="pill-segment pill-icon" id="pillDollar" aria-label="Pay">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 6.5C17 4.6 14.8 3 12 3S7 4.6 7 6.5 9.2 9.5 12 9.5s5 1.5 5 4-2.2 4-5 4-5-1.6-5-3.5" stroke="#8a8fa3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="pill-segment pill-icon" id="pillClock" aria-label="History">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8a8fa3" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="#8a8fa3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Bottom nav -->
+    <div class="bottom-nav">
+      <button class="nav-item active" data-tab="Home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11 12 4l9 7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" data-tab="Pay">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11 21 3l-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Pay</span>
+      </button>
+      <button class="nav-item" data-tab="Cards">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Cards</span>
+      </button>
+      <button class="nav-item" data-tab="Activity">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 9-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3 5v7h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Activity</span>
+      </button>
+      <button class="nav-item" data-tab="Profile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>Profile</span>
+      </button>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

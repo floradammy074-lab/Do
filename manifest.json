@@ -1,0 +1,11 @@
+{
+  "name": "FlowBank",
+  "short_name": "FlowBank",
+  "description": "FlowBank mobile banking home screen — check your balance, send and add money, and review recent activity.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#3d6bf0",
+  "orientation": "portrait",
+  "icons": []
+}
